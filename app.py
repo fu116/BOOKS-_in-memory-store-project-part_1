@@ -1,7 +1,7 @@
 from utils import database 
 
 
-USER_CHOICE="""
+USER_CHOICE= """
 Enter:
 "a" to add a new book 
 "l" to list all books
@@ -19,8 +19,11 @@ def prompt_add_book():
 
 
 def prompt_list_book():
-   database.list_book()   
-
+   books=database.list_book()   
+   for book in books:
+      read = "YES ✅" if book["read"]=="1" else "NO ❎"
+      print(f"{book["name"]} by {book["author"]} , read: {read}"  )
+         
 
 def prompt_read_book():
         name=input("Enter the name of the book  you just finished reading : ")    
