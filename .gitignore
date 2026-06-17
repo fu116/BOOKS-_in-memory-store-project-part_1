@@ -1,0 +1,10 @@
+Plaintext
+# Python bytecode (compiled files)
+__pycache__/
+*.pyc
+
+# Local SQLite database file
+data.db
+
+# Old text files you aren't using anymore
+books.txt

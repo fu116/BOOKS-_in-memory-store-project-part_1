@@ -12,8 +12,8 @@ Enter:
 """
 
 def prompt_add_book():
-   name=input("Enter book name: ")
-   author=input("enter book author: ")
+   name=input("Enter book name: ").strip().lower()
+   author=input("enter book author: ").strip().lower()
    database.add_book(name, author)
 
 
@@ -21,17 +21,17 @@ def prompt_add_book():
 def prompt_list_book():
    books=database.list_book()   
    for book in books:
-      read = "YES ✅" if book["read"]=="1" else "NO ❎"
+      read = "YES ✅" if book["read"]==1 else "NO ❎"
       print(f"{book["name"]} by {book["author"]} , read: {read}"  )
          
 
 def prompt_read_book():
-        name=input("Enter the name of the book  you just finished reading : ")    
+        name=input("Enter the name of the book  you just finished reading : ").strip().lower()    
         database.mark_as_read_book(name)
 
 
 def prompt_delete_book():
-     name=input("Enter book name: ")
+     name=input("Enter book name: ").strip().lower()
      database.delete_book(name)
 
 
@@ -45,9 +45,12 @@ operations = {
 }
 
 def menu():
-  input_menu=input(USER_CHOICE).lower().strip()
 
-  while input_menu!="q":
+ database.create_book_table()
+
+ input_menu=input(USER_CHOICE).lower().strip()
+
+ while input_menu!="q":
       if input_menu in operations:
          my_operation=operations[input_menu]
          my_operation() 
